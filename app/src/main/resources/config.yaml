@@ -9,13 +9,13 @@ kumuluzee:
       port: 8080
   #datasources:
    # - jndi-name: jdbc/CustomersDS
-    #  connection-url: jdbc:postgresql://192.168.99.100:5432/customer
+    #  connection-url: jdbc:postgresql:/customer
      # username: postgres
      # password: postgres
      # max-pool-size: 20
   #config:
    # etcd:
-    #  hosts: http://192.168.99.100:2379
+    #  hosts:
   cors-filter:
     servlet:
       allow-origin: "*"
