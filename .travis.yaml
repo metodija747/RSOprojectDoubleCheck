@@ -15,6 +15,8 @@ cache:
 
 env:
   - DOCKER_IMAGE=mete/rso-customers:0.06
+  - DOCKER_USERNAME=2741
+  - DOCKER_PASSWORD=Basicto123
 
 script:
   - mvn clean package -U
