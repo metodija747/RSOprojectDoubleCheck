@@ -16,10 +16,9 @@
             <groupId>com.kumuluz.ee</groupId>
             <artifactId>kumuluzee-servlet-jetty</artifactId>
         </dependency>
-
         <dependency>
-            <groupId>com.kumuluz.ee.config</groupId>
-            <artifactId>kumuluzee-config-etcd</artifactId>
+        <artifactId>kumuluzee-config-consul</artifactId>
+        <groupId>com.kumuluz.ee.config</groupId>
         </dependency>
         <dependency>
             <groupId>si.fri.rso.samples</groupId>
@@ -32,6 +31,10 @@
         <dependency>
             <groupId>com.kumuluz.ee.cors</groupId>
             <artifactId>kumuluzee-cors</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.kumuluz.ee.health</groupId>
+            <artifactId>kumuluzee-health</artifactId>
         </dependency>
     </dependencies>
 

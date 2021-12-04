@@ -12,10 +12,15 @@ kumuluzee:
      connection-url: jdbc:postgresql://localhost:5432/customer
      username: postgres
      password: postgres
-
-  #config:
-   # etcd:
-    #  hosts:
+  health:
+    checks:
+      data-source-health-check:
+        type: liveness
+        jndi-name: jdbc/CustomerDS
+  metrics:
+    web-instrumentation:
+      - name: cutomers-health
+        url-pattern: /v1/customers/*
   cors-filter:
     servlet:
       allow-origin: "*"
@@ -23,3 +28,4 @@ rest-properties:
   external-services:
     order-service:
       enabled: true
+  broken: false

@@ -11,6 +11,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.PersistenceUnit;
 
+
 @ApplicationScoped
 @ConfigBundle("rest-properties")
 public class RestProperties {
@@ -24,5 +25,6 @@ public class RestProperties {
     public void setOrderServiceEnabled(boolean orderServiceEnabled) {
         this.orderServiceEnabled = orderServiceEnabled;
     }
-
+    //ovoj kod e za citanje od konfiguraciski server
+    //localhost:8500
 }

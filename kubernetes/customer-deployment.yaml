@@ -1,0 +1,56 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: costumer
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: costumer
+  template:
+    metadata:
+      labels:
+        app: costumer
+    spec:
+      containers:
+        - image: 2741/mojaprvaslika
+          name: mojaprvaslika
+          env:
+            - name: KUMULUZEE_DATASOURCES0_CONNECTIONURL
+              value: jdbc:postgresql://abul.db.elephantsql.com:5432/dyotbadl
+            - name: KUMULUZEE_DATASOURCES0_USERNAME
+              value: dyotbadl
+            - name: KUMULUZEE_DATASOURCES0_PASSWORD
+              value: PvKlJHRdGpGvvFc2wUFw_zA6F3FXhilN
+          ports:
+            - containerPort: 8080
+              name: server
+              protocol: TCP
+          livenessProbe:
+            httpGet:
+              path: /health/live
+              port: server
+            initialDelaySeconds: 20
+            periodSeconds: 3
+          readinessProbe:
+            httpGet:
+              path: /health/ready
+              port: server
+            initialDelaySeconds: 20
+            periodSeconds: 3
+
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: costumer
+spec:
+  type: LoadBalancer
+  ports:
+    - port: 8080
+      protocol: TCP
+      targetPort: server
+  selector:
+    app: costumer
