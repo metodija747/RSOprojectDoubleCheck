@@ -14,8 +14,8 @@ cache:
     - $HOME/.m2
 
 env:
-  - DOCKER_IMAGE=mete/rso-customers:0.06
-  - DOCKER_USERNAME=2741
+  - DOCKER_IMAGE=metodijabucevski/rso-customers:1.0
+  - DOCKER_USERNAME=metodijabucevski
   - DOCKER_PASSWORD=basicto
 
 script:

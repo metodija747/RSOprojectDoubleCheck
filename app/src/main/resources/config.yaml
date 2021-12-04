@@ -1,5 +1,5 @@
 kumuluzee:
-  name: rso-customers
+  name: Kopj
   env:
     name: dev
   version: 1.0.0
@@ -8,11 +8,11 @@ kumuluzee:
     http:
       port: 8080
   #datasources:
-   # - jndi-name: jdbc/CustomersDS
-    #  connection-url: jdbc:postgresql:/customer
-     # username: postgres
-     # password: postgres
-     # max-pool-size: 20
+   #- jndi-name: jdbc/CustomersDS
+    # connection-url: jdbc:postgresql://localhost:5432/customer
+     #username: postgres
+     #password: postgres
+
   #config:
    # etcd:
     #  hosts:
