@@ -2,12 +2,13 @@ package si.fri.rso.samples.Kopj.services;
 
 import com.kumuluz.ee.rest.beans.QueryParameters;
 import com.kumuluz.ee.rest.utils.JPAUtils;
-import org.slf4j.Logger;
+
 import si.fri.rso.samples.Kopj.models.Kopj;
 import si.fri.rso.samples.Kopj.models.Order;
 import si.fri.rso.samples.Kopj.services.config.RestProperties;
 
 import javax.annotation.PostConstruct;
+import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
@@ -23,10 +24,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+@RequestScoped
 public class KopjBean {
 
 
-    @Inject
+
     private Optional<String> baseUrl;
 
     @Inject
@@ -44,7 +46,7 @@ public class KopjBean {
     @PostConstruct
     private void init() {
         httpClient = ClientBuilder.newClient();
-        baseUrl = Optional.of("http://192.168.99.100:8081"); // only for demonstration
+        baseUrl = Optional.of("http://localhost:8080"); // only for demonstration
     }
     public List<Kopj> getCustomers() {
 

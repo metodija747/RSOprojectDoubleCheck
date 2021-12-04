@@ -7,11 +7,11 @@ kumuluzee:
     base-url: http://localhost:8080
     http:
       port: 8080
-  #datasources:
-   #- jndi-name: jdbc/CustomersDS
-    # connection-url: jdbc:postgresql://localhost:5432/customer
-     #username: postgres
-     #password: postgres
+  datasources:
+   - jndi-name: jdbc/CustomersDS
+     connection-url: jdbc:postgresql://localhost:5432/customer
+     username: postgres
+     password: postgres
 
   #config:
    # etcd:
