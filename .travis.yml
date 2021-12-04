@@ -1,0 +1,19 @@
+sudo: required
+services:
+  - docker
+language: java
+dist: bionic
+jdk:
+  - openjdk14
+cache:
+  directories:
+    - "$HOME/.m2"
+env:
+  global:
+    - DOCKER_IMAGE=2741/mojaprvaslika-SNAPSHOT-$TRAVIS_JOB_NUMBER
+script:
+  - mvn clean package -U
+  - docker build -t "$DOCKER_IMAGE" .
+after_success:
+  - echo basicto | docker login -u 2741 --password-stdin
+  - docker push "$DOCKER_IMAGE"
