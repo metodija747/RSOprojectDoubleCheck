@@ -15,5 +15,5 @@ script:
   - mvn clean package -U
   - docker build -t "$DOCKER_IMAGE" .
 after_success:
-  - echo basicto | docker login -u 2741 --password-stdin
+  - docker login -u="2741" -p="basicto"
   - docker push "$DOCKER_IMAGE"
