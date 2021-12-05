@@ -116,6 +116,8 @@
                 <version>3.7.0</version>
                 <configuration>
                     <fork>true</fork>
+                    <source>1.8</source>
+                    <target>1.8</target>
                     <executable>C:\Program Files\Java\jdk1.8.0_202\bin\javac</executable>
                 </configuration>
             </plugin>
