@@ -46,7 +46,7 @@ public class KopjBean {
     @PostConstruct
     private void init() {
         httpClient = ClientBuilder.newClient();
-        baseUrl = Optional.of("http://localhost:8080"); // only for demonstration
+        baseUrl = Optional.of("http://20.84.34.152:8080");
     }
     public List<Kopj> getCustomers() {
 
@@ -71,10 +71,10 @@ public class KopjBean {
             throw new NotFoundException();
         }
 
-        if (restProperties.isOrderServiceEnabled()) {
-            List<Order> orders = customersBean.getOrders(customerId);
-            customer.setOrders(orders);
-        }
+        //if (restProperties.isOrderServiceEnabled()) {
+            //List<Order> orders = customersBean.getOrders(customerId);
+           // customer.setOrders(orders);
+       // }
 
         return customer;
     }

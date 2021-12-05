@@ -25,6 +25,7 @@ public class RestProperties {
     public void setOrderServiceEnabled(boolean orderServiceEnabled) {
         this.orderServiceEnabled = orderServiceEnabled;
     }
+
     //ovoj kod e za citanje od konfiguraciski server
     //localhost:8500
 }
