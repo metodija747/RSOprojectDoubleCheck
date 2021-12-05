@@ -13,13 +13,13 @@ cache:
   directories:
     - $HOME/.m2
 
-env:
-  - DOCKER_IMAGE=2741/mojaprvaslika
 
 script:
   - mvn clean package -U
-  - docker build -t "$DOCKER_IMAGE" .
+  - docker build -t mojaprvaslika .
+  - docker tag mojaprvaslika 2741/mojaprvaslika
+
 
 after_success:
   - docker login -u=2741 -p=basicto
-  - docker push "$DOCKER_IMAGE"
+  - docker push 2741/mojaprvaslika
