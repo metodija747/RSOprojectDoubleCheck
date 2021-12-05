@@ -20,10 +20,8 @@ kumuluzee:
   metrics:
     web-instrumentation:
       - name: cutomers-health
-        url-pattern: /v1/customers/*
-    servlet:
-      enabled: true
-      mapping: /my-metrics-servlet
+        url-pattern: /metrics
+
   cors-filter:
     servlet:
       allow-origin: "*"
