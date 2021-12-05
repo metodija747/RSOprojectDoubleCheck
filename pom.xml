@@ -103,6 +103,11 @@
             <version>1.0.0-SNAPSHOT</version>
         </dependency>
         <dependency>
+            <groupId>com.kumuluz.ee.config</groupId>
+            <artifactId>kumuluzee-config-mp</artifactId>
+            <version>${kumuluzee-config-mp.version}</version>
+        </dependency>
+        <dependency>
             <groupId>si.fri.rso.samples</groupId>
             <artifactId>Kopj-services</artifactId>
             <version>1.0.0-SNAPSHOT</version>
