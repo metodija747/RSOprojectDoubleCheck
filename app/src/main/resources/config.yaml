@@ -21,6 +21,9 @@ kumuluzee:
     web-instrumentation:
       - name: cutomers-health
         url-pattern: /v1/customers/*
+    servlet:
+      enabled: true
+      mapping: /my-metrics-servlet
   cors-filter:
     servlet:
       allow-origin: "*"
