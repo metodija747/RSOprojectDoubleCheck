@@ -19,7 +19,7 @@ kumuluzee:
         jndi-name: jdbc/CustomerDS
   metrics:
     web-instrumentation:
-      - name: cutomers-health
+      - name: metriki
         url-pattern: /metrics
 
   cors-filter:
