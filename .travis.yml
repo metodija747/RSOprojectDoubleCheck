@@ -22,5 +22,5 @@ script:
 
 after_success:
   - docker tag mojaprvaslika 2741/mojaprvaslika
-  - docker login -u=2741 -p=basicto
+  - docker login -u="$DockerUser" -p="$DockerPass"
   - docker push 2741/mojaprvaslika
