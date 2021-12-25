@@ -7,8 +7,11 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="app" />
+        <module name="Kopj-models" />
+        <module name="Kopj-services" />
         <module name="models" />
         <module name="services" />
+        <module name="Kopj-app" />
       </profile>
     </annotationProcessing>
   </component>

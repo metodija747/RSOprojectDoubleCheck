@@ -34,16 +34,6 @@ public class KopjResources {
 
         return Response.ok(customers).build();
     }
-    @GET
-    @Path("/filtered")
-    public Response getCustomersFiltered() {
-
-        List<Kopj> customers;
-
-        customers = customersBean.getCustomersFilter(uriInfo);
-
-        return Response.status(Response.Status.OK).entity(customers).build();
-    }
 
     @GET
     @Path("/{customerId}")
