@@ -5,7 +5,6 @@ import com.kumuluz.ee.rest.utils.JPAUtils;
 
 import si.fri.rso.samples.Kopj.models.Kopj;
 import si.fri.rso.samples.Kopj.models.Order;
-import si.fri.rso.samples.Kopj.services.config.RestProperties;
 
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.RequestScoped;
@@ -26,12 +25,6 @@ import java.util.List;
 
 @RequestScoped
 public class KopjBean {
-
-
-
-
-    @Inject
-    private RestProperties restProperties;
 
     @Inject
     private EntityManager em;
