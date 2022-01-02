@@ -39,7 +39,7 @@ public class KopjResources {
         return Response.ok(customers).build();
     }
 
-    @GET
+    /*@GET
     @Path("/{customerId}")
     @Timed
     public Response getCustomer(@PathParam("customerId") String customerId) {
@@ -50,10 +50,10 @@ public class KopjResources {
             return Response.status(Response.Status.NOT_FOUND).build();
         }
         return Response.status(Response.Status.OK).entity(customer).build();
-    }
+    }*/
 
     @GET
-    @Path("/pat/{customerId}")
+    @Path("{customerId}")
     @Timed
     public Response getPayment(@PathParam("customerId") String customerId) {
 
