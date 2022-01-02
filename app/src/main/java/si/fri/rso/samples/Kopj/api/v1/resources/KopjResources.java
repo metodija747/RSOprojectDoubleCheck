@@ -1,6 +1,8 @@
 package si.fri.rso.samples.Kopj.api.v1.resources;
 
 
+import org.eclipse.microprofile.metrics.annotation.Metered;
+import org.eclipse.microprofile.metrics.annotation.Timed;
 import si.fri.rso.samples.Kopj.models.Kopj;
 import si.fri.rso.samples.Kopj.services.KopjBean;
 
@@ -28,6 +30,7 @@ public class KopjResources {
     protected UriInfo uriInfo;
 
     @GET
+    @Metered
     public Response getCustomers() {
 
         List<Kopj> customers = customersBean.getCustomers();
@@ -47,6 +50,7 @@ public class KopjResources {
 
     @GET
     @Path("/{customerId}")
+    @Timed
     public Response getCustomer(@PathParam("customerId") String customerId) {
 
         Kopj customer = customersBean.getCustomer(customerId);
@@ -58,6 +62,7 @@ public class KopjResources {
     }
 
     @POST
+    @Timed
     public Response createCustomer(Kopj customer) {
 
         if ((customer.getFirstName() == null || customer.getFirstName().isEmpty()) || (customer.getLastName() == null

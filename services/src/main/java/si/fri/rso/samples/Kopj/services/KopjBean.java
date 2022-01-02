@@ -22,14 +22,13 @@ import javax.ws.rs.core.GenericType;
 import javax.ws.rs.core.UriInfo;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
+
 
 @RequestScoped
 public class KopjBean {
 
 
 
-    private Optional<String> baseUrl;
 
     @Inject
     private RestProperties restProperties;
@@ -43,11 +42,7 @@ public class KopjBean {
 
     private Client httpClient;
 
-    @PostConstruct
-    private void init() {
-        httpClient = ClientBuilder.newClient();
-        baseUrl = Optional.of("http://20.84.34.152:8080");
-    }
+
     public List<Kopj> getCustomers() {
 
         TypedQuery<Kopj> query = em.createNamedQuery("Customer.getAll", Kopj.class);
@@ -129,29 +124,6 @@ public class KopjBean {
         return true;
 
     }
-
-    public List<Order> getOrders(String customerId) {
-        if (baseUrl.isPresent()) {
-
-            try {
-                return httpClient
-                        .target(baseUrl.get() + "/v1/orders?where=customerId:EQ:" + customerId)
-                        .request().get(new GenericType<List<Order>>() {
-                        });
-            } catch (WebApplicationException | ProcessingException e) {
-
-                throw new InternalServerErrorException(e);
-            }
-        }
-
-        return new ArrayList<>();
-
-
-
-    }
-
-
-
 
     private void beginTx() {
         if (!em.getTransaction().isActive())

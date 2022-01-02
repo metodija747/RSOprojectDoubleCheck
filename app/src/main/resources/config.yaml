@@ -27,6 +27,6 @@ kumuluzee:
       allow-origin: "*"
 rest-properties:
   external-services:
-    order-service:
+    service:
       enabled: true
   broken: false

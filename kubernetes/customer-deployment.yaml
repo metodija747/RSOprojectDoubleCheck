@@ -1,16 +1,16 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: costumer
+  name: cistumer
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: costumer
+      app: cistumer
   template:
     metadata:
       labels:
-        app: costumer
+        app: cistumer
     spec:
       containers:
         - image: 2741/mojaprvaslika
@@ -22,6 +22,8 @@ spec:
               value: dyotbadl
             - name: KUMULUZEE_DATASOURCES0_PASSWORD
               value: PvKlJHRdGpGvvFc2wUFw_zA6F3FXhilN
+            - name: KUMULUZEE_CONFIG_CONSUL_AGENT
+              value: http://20.81.14.144:8500
           ports:
             - containerPort: 8080
               name: server
@@ -45,12 +47,12 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: costumer
+  name: cistumer
 spec:
-  type: LoadBalancer
+  type: ClusterIP
   ports:
     - port: 8080
       protocol: TCP
       targetPort: server
   selector:
-    app: costumer
+    app: cistumer
