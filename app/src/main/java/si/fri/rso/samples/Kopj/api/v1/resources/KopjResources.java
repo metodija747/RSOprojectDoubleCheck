@@ -4,6 +4,7 @@ package si.fri.rso.samples.Kopj.api.v1.resources;
 import org.eclipse.microprofile.metrics.annotation.Metered;
 import org.eclipse.microprofile.metrics.annotation.Timed;
 import si.fri.rso.samples.Kopj.models.Kopj;
+import si.fri.rso.samples.Kopj.models.Payments;
 import si.fri.rso.samples.Kopj.services.KopjBean;
 
 import javax.enterprise.context.RequestScoped;
@@ -50,6 +51,17 @@ public class KopjResources {
         }
         return Response.status(Response.Status.OK).entity(customer).build();
     }
+
+    @GET
+    @Path("/pat/{customerId}")
+    @Timed
+    public Response getPayment(@PathParam("customerId") String customerId) {
+
+        List <Payments> paying = customersBean.getPayments(customerId);
+
+        return Response.status(Response.Status.OK).entity(paying).build();
+    }
+
 
     @POST
     @Timed
