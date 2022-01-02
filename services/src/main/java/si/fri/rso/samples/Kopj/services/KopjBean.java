@@ -4,7 +4,6 @@ import com.kumuluz.ee.rest.beans.QueryParameters;
 import com.kumuluz.ee.rest.utils.JPAUtils;
 
 import si.fri.rso.samples.Kopj.models.Kopj;
-import si.fri.rso.samples.Kopj.models.Order;
 
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.RequestScoped;
