@@ -17,11 +17,11 @@ spec:
           name: mojaprvaslika
           env:
             - name: KUMULUZEE_DATASOURCES0_CONNECTIONURL
-              value: jdbc:postgresql://abul.db.elephantsql.com:5432/dyotbadl
+              value: jdbc:postgresql://castor.db.elephantsql.com:5432/rdrefjzb
             - name: KUMULUZEE_DATASOURCES0_USERNAME
-              value: dyotbadl
+              value: rdrefjzb
             - name: KUMULUZEE_DATASOURCES0_PASSWORD
-              value: PvKlJHRdGpGvvFc2wUFw_zA6F3FXhilN
+              value: 2etC4m9cgpnQXukqUSk8aLZglGg5PPxr
             - name: KUMULUZEE_CONFIG_CONSUL_AGENT
               value: http://20.81.14.144:8500
           ports:
