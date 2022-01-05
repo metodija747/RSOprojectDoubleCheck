@@ -18,7 +18,7 @@ public class NotFoundExceptionMapper implements ExceptionMapper<NotFoundExceptio
 
         ApiError apiError = new ApiError();
         apiError.setStatus(404);
-        apiError.setCode("resource.not.found");
+        apiError.setCode("resource.not.found!");
         apiError.setMessage(e.getMessage());
 
         return Response
