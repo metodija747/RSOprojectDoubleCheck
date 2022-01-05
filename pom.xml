@@ -25,6 +25,7 @@
         <kumuluzee-health.version>2.4.2</kumuluzee-health.version>
         <kumuluzee-metrics.version>2.3.0</kumuluzee-metrics.version>
         <kumuluzee-config-mp.version>1.4.1</kumuluzee-config-mp.version>
+        <kumuluzee-openapi-mp.version>1.4.0</kumuluzee-openapi-mp.version>
         <kumuluzee-cors.version>1.0.6</kumuluzee-cors.version>
         <kumuluzee.version>3.12.2</kumuluzee.version>
         <kumuluzee-rest.version>1.5.1</kumuluzee-rest.version>
@@ -104,6 +105,17 @@
             <groupId>si.fri.rso.samples</groupId>
             <artifactId>Kopj-models</artifactId>
             <version>1.0.0-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>com.kumuluz.ee.openapi</groupId>
+            <artifactId>kumuluzee-openapi-mp</artifactId>
+            <version>${kumuluzee-openapi-mp.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.kumuluz.ee.openapi</groupId>
+            <artifactId>kumuluzee-openapi-mp-ui</artifactId>
+            <version>${kumuluzee-openapi-mp.version}</version>
         </dependency>
         <dependency>
             <groupId>com.kumuluz.ee.config</groupId>

@@ -3,6 +3,14 @@ package si.fri.rso.samples.Kopj.api.v1.resources;
 
 import org.eclipse.microprofile.metrics.annotation.Metered;
 import org.eclipse.microprofile.metrics.annotation.Timed;
+import org.eclipse.microprofile.openapi.annotations.Operation;
+import org.eclipse.microprofile.openapi.annotations.enums.SchemaType;
+import org.eclipse.microprofile.openapi.annotations.media.Content;
+import org.eclipse.microprofile.openapi.annotations.media.Schema;
+import org.eclipse.microprofile.openapi.annotations.parameters.Parameter;
+import org.eclipse.microprofile.openapi.annotations.parameters.RequestBody;
+import org.eclipse.microprofile.openapi.annotations.responses.APIResponse;
+import org.eclipse.microprofile.openapi.annotations.responses.APIResponses;
 import si.fri.rso.samples.Kopj.models.Kopj;
 import si.fri.rso.samples.Kopj.services.KopjBean;
 
@@ -13,6 +21,7 @@ import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.UriInfo;
+import java.security.KeyPair;
 import java.util.List;
 
 
@@ -29,6 +38,14 @@ public class KopjResources {
     @Context
     protected UriInfo uriInfo;
 
+
+
+    @Operation(description = "Get for all customers information.", summary = "Get all customer details")
+    @APIResponses({
+            @APIResponse(responseCode = "200",
+                    description = "List of customers and their details",
+                    content = @Content(schema = @Schema(implementation = Kopj.class, type = SchemaType.ARRAY))
+            )})
     @GET
     @Metered
     public Response getCustomers() {
@@ -38,10 +55,21 @@ public class KopjResources {
         return Response.ok(customers).build();
     }
 
+
+    @Operation(description = "Get customer's information.", summary = "Get details for specific customer")
+    @APIResponses({
+            @APIResponse(responseCode = "200",
+                    description = "Specific user's details",
+                    content = @Content(
+                            schema = @Schema(implementation = Kopj.class))
+            ),
+            @APIResponse(responseCode = "404", description = "Resource not found .")
+    })
     @GET
     @Path("/{customerId}")
     @Timed
-    public Response getCustomer(@PathParam("customerId") String customerId) {
+    public Response getCustomer(@Parameter(description = "Customer ID.", required = true)
+            @PathParam("customerId") String customerId) {
 
         Kopj customer = customersBean.getCustomer(customerId);
 
@@ -52,11 +80,19 @@ public class KopjResources {
     }
 
 
-
+    @Operation(description = "Add new customer.", summary = "Add customer")
+    @APIResponses({
+            @APIResponse(responseCode = "201",
+                    description = "Customer successfully added."
+            ),
+            @APIResponse(responseCode = "400", description = "Bas request .")
+    })
     @POST
     @Timed
-    public Response createCustomer(Kopj customer) {
-
+    public Response createCustomer(@RequestBody(
+            description = "DTO object with customer details.",
+            required = true, content = @Content(
+            schema = @Schema(implementation = Kopj.class)))Kopj customer) {
         if ((customer.getFirstName() == null || customer.getFirstName().isEmpty()) || (customer.getLastName() == null
                 || customer.getLastName().isEmpty())) {
             return Response.status(Response.Status.BAD_REQUEST).build();
@@ -70,9 +106,21 @@ public class KopjResources {
             return Response.status(Response.Status.CONFLICT).entity(customer).build();
         }
     }
+
+
+    @Operation(description = "Update customer details.", summary = "Update customer's info")
+    @APIResponses({
+            @APIResponse(
+                    responseCode = "200",
+                    description = "Details successfully updated."
+            ),
+            @APIResponse(responseCode = "400", description = "Bas request."),
+            @APIResponse(responseCode = "304", description = "Resource not modified.")
+    })
     @PUT
     @Path("{customerId}")
-    public Response putZavarovanec(@PathParam("customerId") String customerId, Kopj customer) {
+    public Response putZavarovanec(@Parameter(description = "Customer ID.", required = true)
+            @PathParam("customerId") String customerId, Kopj customer) {
 
         customer = customersBean.putCustomer(customerId, customer);
 
@@ -86,9 +134,22 @@ public class KopjResources {
         }
     }
 
+
+    @Operation(description = "Delete customer.", summary = "Delete customer")
+    @APIResponses({
+            @APIResponse(
+                    responseCode = "410",
+                    description = "Customer successfully deleted."
+            ),
+            @APIResponse(
+                    responseCode = "404",
+                    description = "Not found."
+            )
+    })
     @DELETE
     @Path("{customerId}")
-    public Response deleteCustomer(@PathParam("customerId") String customerId) {
+    public Response deleteCustomer(@Parameter(description = "Customer ID.", required = true)
+            @PathParam("customerId") String customerId) {
 
         boolean deleted = customersBean.deleteCustomer(customerId);
 
