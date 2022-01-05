@@ -1,17 +1,31 @@
 package si.fri.rso.samples.Kopj.services;
 
+import com.kumuluz.ee.discovery.annotations.DiscoverService;
 import com.kumuluz.ee.rest.beans.QueryParameters;
 import com.kumuluz.ee.rest.utils.JPAUtils;
 
+import org.eclipse.microprofile.faulttolerance.CircuitBreaker;
+import org.eclipse.microprofile.faulttolerance.Fallback;
+import org.eclipse.microprofile.faulttolerance.Timeout;
 import si.fri.rso.samples.Kopj.models.Kopj;
+import si.fri.rso.samples.Kopj.models.Payment;
 
+import javax.annotation.PostConstruct;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
+import javax.inject.Provider;
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 import javax.ws.rs.NotFoundException;
+import javax.ws.rs.client.Client;
+import javax.ws.rs.client.ClientBuilder;
+import javax.ws.rs.client.WebTarget;
+import javax.ws.rs.core.GenericType;
 import javax.ws.rs.core.UriInfo;
+import java.time.temporal.ChronoUnit;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @RequestScoped
 public class KopjBean {
@@ -22,9 +36,16 @@ public class KopjBean {
     @Inject
     private KopjBean customersBean;
 
+    private Client httpClient;
 
+    @Inject
+    @DiscoverService("Payment")
+    Provider<Optional<WebTarget>> targetProvider;
 
-
+    @PostConstruct
+    private void init() {
+        httpClient = ClientBuilder.newClient();
+    }
 
     public List<Kopj> getCustomers() {
 
@@ -52,6 +73,39 @@ public class KopjBean {
 
 
         return customer;
+    }
+
+    @Timeout(value = 2, unit = ChronoUnit.SECONDS)
+    @CircuitBreaker(requestVolumeThreshold = 3)
+    @Fallback(fallbackMethod = "getNumberFallback")
+    public List<Payment> getNoPayments(String customerId) {
+
+        /*return httpClient
+                .target("http://20.127.141.29/pay/v1/payments/"+customerId)
+                .request().get(new GenericType<List<Payment>>(){
+                });*/
+        Optional<WebTarget> target = targetProvider.get();
+        return httpClient
+        .target(target.get().getUri().toString() + "/v1/payments/" + customerId)
+                .request().get(new GenericType<List<Payment>>(){
+                });
+    }
+    public List<Payment> getNumberFallback(String customerId) {
+        System.out.println("Fallback called");
+
+        List <Payment> payo = new ArrayList<>();
+
+        Payment paymento = new Payment();
+
+        paymento.setId("N/A");
+        paymento.setUserId("N/A");
+        paymento.setAmount("N/A");
+        paymento.setDate("N/A");
+        paymento.setElStationName("N/A");
+
+        payo.add(paymento);
+
+        return payo;
     }
 
     public Kopj createCustomer(Kopj customer) {

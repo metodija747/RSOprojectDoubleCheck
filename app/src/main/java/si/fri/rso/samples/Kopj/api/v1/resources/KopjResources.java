@@ -12,6 +12,7 @@ import org.eclipse.microprofile.openapi.annotations.parameters.RequestBody;
 import org.eclipse.microprofile.openapi.annotations.responses.APIResponse;
 import org.eclipse.microprofile.openapi.annotations.responses.APIResponses;
 import si.fri.rso.samples.Kopj.models.Kopj;
+import si.fri.rso.samples.Kopj.models.Payment;
 import si.fri.rso.samples.Kopj.services.KopjBean;
 
 import javax.enterprise.context.RequestScoped;
@@ -55,6 +56,16 @@ public class KopjResources {
         return Response.ok(customers).build();
     }
 
+    @GET
+    @Path("no/{customerId}")
+    @Metered
+    public Response getNumbers(@PathParam("customerId") String customerId) {
+
+        List <Payment> pay = customersBean.getNoPayments(customerId);
+
+
+        return Response.ok(pay.size()).build();
+    }
 
     @Operation(description = "Get customer's information.", summary = "Get details for specific customer")
     @APIResponses({

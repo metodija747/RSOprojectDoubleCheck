@@ -35,6 +35,8 @@ public class Kopj {
     private String dateOfBirth;
 
 
+
+
     public String getId() {
         return id;
     }
@@ -74,6 +76,7 @@ public class Kopj {
     public void setDateOfBirth(String dateOfBirth) {
         this.dateOfBirth = dateOfBirth;
     }
+
 
 
 }

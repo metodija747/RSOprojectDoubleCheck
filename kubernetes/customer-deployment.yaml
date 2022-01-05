@@ -24,6 +24,9 @@ spec:
               value: 2etC4m9cgpnQXukqUSk8aLZglGg5PPxr
             - name: KUMULUZEE_CONFIG_CONSUL_AGENT
               value: http://20.81.14.144:8500
+            - name: KUMULUZEE_DISCOVERY_CONSUL_AGENT
+              value: http://20.81.14.144:8500
+
           ports:
             - containerPort: 8080
               name: server
