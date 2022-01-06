@@ -56,10 +56,17 @@ public class KopjResources {
         return Response.ok(customers).build();
     }
 
+    @Operation(description = "Get number of payments for specific customer.", summary = "Get number of payments")
+    @APIResponses({
+            @APIResponse(responseCode = "200",
+                    description = "Number of payments for customer")
+
+            })
     @GET
     @Path("no/{customerId}")
     @Metered
-    public Response getNumbers(@PathParam("customerId") String customerId) {
+    public Response getNumbers(@Parameter(description = "Customer ID.", required = true)
+            @PathParam("customerId") String customerId) {
 
         List <Payment> pay = customersBean.getNoPayments(customerId);
 
