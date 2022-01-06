@@ -40,7 +40,7 @@ public class KopjBean {
 
     @Inject
     @DiscoverService("Payment")
-    Provider<Optional<WebTarget>> targetProvider;
+    private Optional<String> baseUrlPayments;
 
     @PostConstruct
     private void init() {
@@ -80,32 +80,16 @@ public class KopjBean {
     @Fallback(fallbackMethod = "getNumberFallback")
     public List<Payment> getNoPayments(String customerId) {
 
-        /*return httpClient
-                .target("http://20.127.141.29/pay/v1/payments/"+customerId)
-                .request().get(new GenericType<List<Payment>>(){
-                });*/
-        Optional<WebTarget> target = targetProvider.get();
         return httpClient
-        .target(target.get().getUri().toString() + "/v1/payments/" + customerId)
+                .target("http://20.127.141.29/pay/v1/payments/"+customerId)
+                //.target(baseUrlPayments.get() + "v1/payments/"+customerId)
                 .request().get(new GenericType<List<Payment>>(){
                 });
     }
     public List<Payment> getNumberFallback(String customerId) {
         System.out.println("Fallback called");
 
-        List <Payment> payo = new ArrayList<>();
-
-        Payment paymento = new Payment();
-
-        paymento.setId("N/A");
-        paymento.setUserId("N/A");
-        paymento.setAmount("N/A");
-        paymento.setDate("N/A");
-        paymento.setElStationName("N/A");
-
-        payo.add(paymento);
-
-        return payo;
+        return new ArrayList<>();
     }
 
     public Kopj createCustomer(Kopj customer) {

@@ -63,7 +63,6 @@ public class KopjResources {
 
         List <Payment> pay = customersBean.getNoPayments(customerId);
 
-
         return Response.ok(pay.size()).build();
     }
 
