@@ -1,6 +1,7 @@
 package si.fri.rso.samples.Kopj.api.v1.resources;
 
 
+import com.kumuluz.ee.logs.cdi.Log;
 import org.eclipse.microprofile.metrics.annotation.Metered;
 import org.eclipse.microprofile.metrics.annotation.Timed;
 import org.eclipse.microprofile.openapi.annotations.Operation;
@@ -26,7 +27,7 @@ import java.security.KeyPair;
 import java.util.List;
 
 
-
+@Log
 @RequestScoped
 @Path("/customers")
 @Produces(MediaType.APPLICATION_JSON)
@@ -63,6 +64,7 @@ public class KopjResources {
 
             })
     @GET
+    @Log
     @Path("no/{customerId}")
     @Metered
     public Response getNumbers(@Parameter(description = "Customer ID.", required = true)
@@ -84,6 +86,7 @@ public class KopjResources {
     })
     @GET
     @Path("/{customerId}")
+    @Log
     @Timed
     public Response getCustomer(@Parameter(description = "Customer ID.", required = true)
             @PathParam("customerId") String customerId) {
@@ -105,6 +108,7 @@ public class KopjResources {
             @APIResponse(responseCode = "400", description = "Bas request .")
     })
     @POST
+    @Log
     @Timed
     public Response createCustomer(@RequestBody(
             description = "DTO object with customer details.",
@@ -135,6 +139,7 @@ public class KopjResources {
             @APIResponse(responseCode = "304", description = "Resource not modified.")
     })
     @PUT
+    @Log
     @Path("{customerId}")
     public Response putZavarovanec(@Parameter(description = "Customer ID.", required = true)
             @PathParam("customerId") String customerId, Kopj customer) {
@@ -165,6 +170,7 @@ public class KopjResources {
     })
     @DELETE
     @Path("{customerId}")
+    @Log
     public Response deleteCustomer(@Parameter(description = "Customer ID.", required = true)
             @PathParam("customerId") String customerId) {
 

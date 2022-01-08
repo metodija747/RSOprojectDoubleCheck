@@ -4,9 +4,9 @@ kumuluzee:
     name: dev
   version: 1.0.0
   server:
-    base-url: http://localhost:8080
+    base-url: http://localhost:8081
     http:
-      port: 8080
+      port: 8081
   datasources:
    - jndi-name: jdbc/CustomersDS
      connection-url: jdbc:postgresql://localhost:5432/customer
@@ -21,9 +21,29 @@ kumuluzee:
     web-instrumentation:
       - name: metriki
         url-pattern: /metrics
-  discovery:
-    consul:
-      agent: http://20.81.14.144:8500
+  #discovery:
+    #consul:
+     # agent: http://20.81.14.144:8500
+  logs:
+    config-file: '<?xml version="1.0" encoding="UTF-8"?>
+                          <Configuration name="Customer">
+                              <Appenders>
+                                  <Console name="console" target="SYSTEM_OUT">
+                                      <PatternLayout pattern="%d %p %marker %m %X %ex %n"/>
+                                  </Console>
+                                  <Socket name="logstash" host="e50cd436-686f-4d3e-a6af-443715cc1c94-ls.logit.io"
+                                  port="18299" protocol="udp">
+                                      <JSONLayout complete="false" compact="true" eventEol="true" charset="UTF-8" properties="true"/>
+                                  </Socket>
+                              </Appenders>
+                              <Loggers>
+                                  <!-- Default logger -->
+                                  <Root level="all">
+                                      <AppenderRef ref="console" level="info" />
+                                      <AppenderRef ref="logstash" level="trace" />
+                                  </Root>
+                              </Loggers>
+                          </Configuration>'
 
   cors-filter:
     servlet:
