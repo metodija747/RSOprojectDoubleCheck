@@ -16,7 +16,7 @@ kumuluzee:
     checks:
       data-source-health-check:
         type: liveness
-        jndi-name: jdbc/CustomerDS
+        jndi-name: jdbc/CustomersDS
   metrics:
     web-instrumentation:
       - name: metriki
