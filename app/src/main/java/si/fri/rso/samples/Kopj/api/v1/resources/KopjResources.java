@@ -29,7 +29,7 @@ import java.util.List;
 
 @Log
 @RequestScoped
-@Path("/customers")
+@Path("/customers1")
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
 public class KopjResources {
