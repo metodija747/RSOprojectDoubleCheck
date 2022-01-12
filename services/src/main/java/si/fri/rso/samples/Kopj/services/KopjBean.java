@@ -75,9 +75,9 @@ public class KopjBean {
         return customer;
     }
 
-    @Timeout(value = 2, unit = ChronoUnit.SECONDS)
+    //@Timeout(value = 2, unit = ChronoUnit.SECONDS)
     //@CircuitBreaker(requestVolumeThreshold = 3)
-    @Fallback(fallbackMethod = "getNumberFallback")
+    //@Fallback(fallbackMethod = "getNumberFallback")
     public List<Payment> getNoPayments(String customerId) {
 
         return httpClient
@@ -86,11 +86,11 @@ public class KopjBean {
                 .request().get(new GenericType<List<Payment>>(){
                 });
     }
-    public List<Payment> getNumberFallback(String customerId) {
-        System.out.println("Fallback called!");
+    //public List<Payment> getNumberFallback(String customerId) {
+        //System.out.println("Fallback called!");
 
-        return new ArrayList<>();
-    }
+       // return new ArrayList<>();
+   // }
 
     public Kopj createCustomer(Kopj customer) {
 
