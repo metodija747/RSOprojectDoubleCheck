@@ -42,7 +42,7 @@ public class KopjResources {
 
 
 
-    @Operation(description = "Get for all customers information.", summary = "Get all customer details")
+    @Operation(description = "Get for all customers information.", summary = "Get all customer details!!!")
     @APIResponses({
             @APIResponse(responseCode = "200",
                     description = "List of customers and their details",
