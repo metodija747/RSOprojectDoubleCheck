@@ -13,8 +13,8 @@ spec:
         app: cistumer
     spec:
       containers:
-        - image: 2741/mojaprvaslika
-          name: mojaprvaslika
+        - image: 2741/mojaprvaslika1
+          name: mojaprvaslika1
           env:
             - name: KUMULUZEE_DATASOURCES0_CONNECTIONURL
               value: jdbc:postgresql://castor.db.elephantsql.com:5432/rdrefjzb
