@@ -72,7 +72,7 @@ public class KopjResources {
 
         List <Payment> pay = customersBean.getNoPayments(customerId);
 
-        return Response.ok(pay.size()+1).build();
+        return Response.ok(pay.size()).build();
     }
 
     @Operation(description = "Get customer's information.", summary = "Get details for specific customer")
