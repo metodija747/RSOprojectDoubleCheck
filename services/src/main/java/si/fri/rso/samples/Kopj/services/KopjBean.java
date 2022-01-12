@@ -87,7 +87,7 @@ public class KopjBean {
                 });
     }
     public List<Payment> getNumberFallback(String customerId) {
-        System.out.println("Fallback called");
+        System.out.println("Fallback called!");
 
         return new ArrayList<>();
     }
