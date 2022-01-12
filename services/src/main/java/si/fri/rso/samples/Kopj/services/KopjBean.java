@@ -38,9 +38,9 @@ public class KopjBean {
 
     private Client httpClient;
 
-    @Inject
-    @DiscoverService("Payment")
-    private Optional<String> baseUrlPayments;
+    //@Inject
+    //@DiscoverService("Payment")
+    //private Optional<String> baseUrlPayments;
 
     @PostConstruct
     private void init() {
