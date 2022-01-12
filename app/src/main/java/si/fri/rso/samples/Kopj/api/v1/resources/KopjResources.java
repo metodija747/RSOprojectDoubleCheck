@@ -67,7 +67,7 @@ public class KopjResources {
     @Log
     @Path("no/{customerId}")
     @Metered
-    public Response getNumbers(@Parameter(description = "Customer ID.", required = true)
+    public Response getNumbers(@Parameter(description = "Customer ID!.", required = true)
             @PathParam("customerId") String customerId) {
 
         List <Payment> pay = customersBean.getNoPayments(customerId);
