@@ -76,7 +76,7 @@ public class KopjBean {
     }
 
     @Timeout(value = 2, unit = ChronoUnit.SECONDS)
-    @CircuitBreaker(requestVolumeThreshold = 3)
+    //@CircuitBreaker(requestVolumeThreshold = 3)
     @Fallback(fallbackMethod = "getNumberFallback")
     public List<Payment> getNoPayments(String customerId) {
 
