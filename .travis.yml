@@ -16,11 +16,11 @@ cache:
 
 script:
   - mvn clean package -U
-  - docker build -t mojaprvaslika1 .
+  - docker build -t mojaprvaslika .
 
 
 
 after_success:
-  - docker tag mojaprvaslika1 2741/mojaprvaslika1
+  - docker tag mojaprvaslika 2741/mojaprvaslika
   - docker login -u="$DockerUser" -p="$DockerPass"
-  - docker push 2741/mojaprvaslika1
+  - docker push 2741/mojaprvaslika
