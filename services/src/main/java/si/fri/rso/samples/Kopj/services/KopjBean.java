@@ -38,9 +38,9 @@ public class KopjBean {
 
     private Client httpClient;
 
-    //@Inject
-    //@DiscoverService("Payment")
-   // private Optional<String> baseUrlPayments;
+    @Inject
+    @DiscoverService("Payment")
+    private Optional<String> baseUrlPayments;
 
     @PostConstruct
     private void init() {
@@ -81,8 +81,8 @@ public class KopjBean {
     public List<Payment> getNoPayments(String customerId) {
 
         return httpClient
-                .target("http://20.127.141.29/pay/v1/payments/"+customerId)
-                //.target(baseUrlPayments.get() + "/v1/payments/" + customerId)
+                //.target("http://20.127.141.29/pay/v1/payments/"+customerId)
+                .target(baseUrlPayments.get() + "/v1/payments/" + customerId)
                 .request().get(new GenericType<List<Payment>>(){
                 });
     }
